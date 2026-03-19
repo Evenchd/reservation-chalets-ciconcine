@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Liste des Chalets</h1>
+<div class="row">
+    {% for chalet in chalets %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            {% if chalet.photo %}
+            <img src="{{ chalet.photo.url }}" class="card-img-top" alt="{{ chalet.nom }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ chalet.nom }}</h5>
+                <p>Capacité: {{ chalet.capacite_max }} personnes</p>
+                <p>Localisation: {{ chalet.localisation }}</p>
+                <p>Équipements: {{ chalet.equipements }}</p>
+                <a href="{% url 'calendrier_chalet' chalet.id %}" class="btn btn-primary">Voir Calendrier</a>
+                <a href="{% url 'creer_reservation' chalet.id %}" class="btn btn-success">Réserver ce chalet</a>  <!-- Bouton ajouté pour réservation -->
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

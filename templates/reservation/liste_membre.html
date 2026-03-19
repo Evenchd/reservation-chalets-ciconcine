@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+<h1>Mes Réservations</h1>
+{% if reservations %}
+<ul>
+    {% for res in reservations %}
+    <li>{{ res.chalet.nom }} - Du {{ res.date_arrivee }} au {{ res.date_depart }} (Statut: {{ res.get_statut_display }})</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Aucune réservation pour le moment.</p>
+{% endif %}
+{% endblock %}
+<td>
+    {% if res.statut != 'annulee' %}
+    <a href="{% url 'annuler_reservation' res.id %}" class="btn btn-danger btn-sm">Annuler</a>
+    {% endif %}
+</td>

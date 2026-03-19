@@ -1,0 +1,50 @@
+/* Calendrier grand pour yeux âgés */
+#calendar {
+    font-size: 1.2em; /* Police plus grande */
+    max-width: 1200px; /* Large pour visibilité */
+    margin: 0 auto;
+}
+.fc-daygrid-day {
+    aspect-ratio: 1 / 1;          /* hauteur = largeur → case carrée */
+    height: auto !important;      /* annule les hauteurs forcées */
+    min-height: 80px;             /* évite que ça devienne trop petit sur mobile */
+    max-height: 180px;            /* limite supérieure si tu veux éviter des cases géantes */
+    box-sizing: border-box;
+}
+.fc-event {
+    background-color: #28a745; /* Vert pour disponible/approuvé */
+    border-color: #198754;
+    white-space: normal; /* Permet le wrap du texte sur plusieurs lignes */
+    word-wrap: break-word; /* Casse les mots longs si needed */
+    padding: 5px; /* Espace intérieur pour lisibilité */
+    font-size: 1em; /* Police ajustée pour fit */
+}
+.fc-event-occupé {
+    background-color: #dc3545; /* Rouge pour occupé */
+}
+.fc-event-attente {
+    background-color: #ffc107; /* Jaune pour en attente */
+}
+/* Boutons et textes plus gros */
+.btn {
+    font-size: 1.1em;
+}
+
+/* Alignement et espacement uniformes dans la navbar (ajusté pour décalage vertical) */
+.navbar-nav {
+    align-items: center; /* Alignement vertical des items */
+}
+.navbar-nav .nav-item {
+    margin-left: 15px; /* Espacement horizontal égal entre boutons (ajuste si besoin) */
+}
+.navbar-nav .nav-item form {
+    margin: 0; /* Enlève margin du form */
+    padding: 0;
+}
+.navbar-nav .nav-item button.nav-link {
+    padding: 0.5rem 1rem; /* Padding standard Bootstrap pour liens */
+    line-height: 1.25; /* Ajuste line-height pour alignement vertical parfait (réduit si trop haut) */
+    cursor: pointer;
+    border: none;
+    background: none;
+}

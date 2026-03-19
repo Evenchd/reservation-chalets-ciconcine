@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Calendrier pour {{ chalet.nom }}</h1>
+<div id="calendar"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'fr',  // En français
+            height: 'auto',  // Adaptatif
+            events: '/evenements_chalet/{{ chalet.id }}/'  // Charge JSON des events
+        });
+        calendar.render();
+    });
+</script>
+{% endblock %}

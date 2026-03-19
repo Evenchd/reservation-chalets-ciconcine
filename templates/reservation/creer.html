@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<h1>Réserver le chalet {{ chalet.nom }}</h1>
+<p>Capacité : {{ chalet.capacite_max }} | Localisation : {{ chalet.localisation }} | Équipements : {{ chalet.equipements }}</p>
+<form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">Soumettre la réservation</button>
+</form>
+{% endblock %}
