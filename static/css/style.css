@@ -1,0 +1,16 @@
+/* Dans static/css/style.css */
+.hero-section {
+    margin-top: -56px;  /* Si tu as une navbar fixed-top de 56px */
+}
+
+.bg-image {
+    position: relative;
+}
+
+.overlay {
+    z-index: 1;
+}
+
+.hero-text {
+    z-index: 2;
+}

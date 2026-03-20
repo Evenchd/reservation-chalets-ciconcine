@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'chalet',
     'reservation',
     'django_bootstrap5',
-
 ]
 
 MIDDLEWARE = [
@@ -120,9 +119,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-# Déjà là, mais ajoute si pas :
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']  # Dossier pour CSS/JS custom
+STATICFILES_DIRS = [BASE_DIR / 'static']  # Dossier pour CSS/JS custom et images statiques
+
+
+# ───────────────────────────────────────────────
+# AJOUT POUR LES MÉDIAS (photos uploadées par les admins)
+# Les fichiers uploadés (comme les photos de chalets) iront dans media/
+MEDIA_URL = '/media/'                  # URL publique pour accéder aux médias (ex: /media/chalets/photo.jpg)
+MEDIA_ROOT = BASE_DIR / 'media'        # Dossier physique sur disque (sera créé automatiquement)
+
+# En production, tu pourras ajouter :
+# STATIC_ROOT = BASE_DIR / 'staticfiles'  # Pour collectstatic
+# ───────────────────────────────────────────────
 
 
 # Authentification custom

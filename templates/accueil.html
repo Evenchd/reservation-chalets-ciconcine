@@ -1,5 +1,35 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title %}Bienvenue au Club Ciconcine - Réservation de Chalets{% endblock %}
+
 {% block content %}
-<h1>Bienvenue !</h1>
-<p>Connectez-vous pour réserver un chalet.</p>
+<!-- Hero Section avec image pleine largeur -->
+<section class="hero-section position-relative text-white text-center py-5">
+    <div class="bg-image"
+         style="background-image: url('{% static 'images/hero-chalet.jpg' %}');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            min-height: 500px;">
+        
+        <div class="overlay position-absolute top-0 start-0 w-100 h-100"
+             style="background: rgba(0, 0, 0, 0.);"></div>
+        
+    
+        </div>
+    </div>
+</section>
+
+<!-- Teaser juste en dessous -->
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="mb-4">Nos chalets vous attendent</h2>
+        <p class="mb-4">
+            12 chalets équipés, vue imprenable, accès à la nature.
+            Exclusivement pour les membres.
+        </p>
+        
+    </div>
+</section>
 {% endblock %}

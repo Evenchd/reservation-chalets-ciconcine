@@ -1,0 +1,19 @@
+{% extends "base.html" %}   <!-- si tu as un base.html, sinon ignore -->
+
+{% load static %}           <!-- ← C’est OBLIGATOIRE pour utiliser {% static %} -->
+
+{% block content %}
+
+  <h1>{{ chalet.nom }}</h1>   <!-- exemple : nom du chalet depuis ton model -->
+
+
+  <p>Description : {{ chalet.description }}</p>
+  <!-- etc. -->
+
+{% endblock %}
+
+{% if chalet.photo %}
+  <img src="{{ chalet.photo.url }}" alt="{{ chalet.nom }}">
+{% else %}
+  <img src="{% static 'chalets/IMG_0456.JPG' %}" alt="Photo par défaut">
+{% endif %}

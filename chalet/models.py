@@ -6,7 +6,12 @@ class Chalet(models.Model):
     localisation = models.CharField(max_length=200)
     equipements = models.TextField()  # Liste séparée par virgules, ex: "BBQ, kayak, wifi"
     services_hiver = models.BooleanField(default=False)  # Services limités en hiver
-    photo = models.ImageField(upload_to='chalets/', blank=True, null=True)  # Utilise Pillow pour images
+    photo = models.ImageField(
+        upload_to='chalets/',          # les photos iront dans media/chalets/
+        blank=True,                    # optionnel
+        null=True,                     # optionnel
+        verbose_name="Photo du chalet"
+    )
 
     def __str__(self):
         return self.nom

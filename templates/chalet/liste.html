@@ -1,23 +1,64 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}dark-chalets{% endblock %}
+
+{% block title %}Liste des Chalets - Club Ciconcine{% endblock %}
+
 {% block content %}
-<h1>Liste des Chalets</h1>
-<div class="row">
-    {% for chalet in chalets %}
-    <div class="col-md-4 mb-4">
-        <div class="card">
-            {% if chalet.photo %}
-            <img src="{{ chalet.photo.url }}" class="card-img-top" alt="{{ chalet.nom }}">
-            {% endif %}
-            <div class="card-body">
-                <h5 class="card-title">{{ chalet.nom }}</h5>
-                <p>Capacité: {{ chalet.capacite_max }} personnes</p>
-                <p>Localisation: {{ chalet.localisation }}</p>
-                <p>Équipements: {{ chalet.equipements }}</p>
-                <a href="{% url 'calendrier_chalet' chalet.id %}" class="btn btn-primary">Voir Calendrier</a>
-                <a href="{% url 'creer_reservation' chalet.id %}" class="btn btn-success">Réserver ce chalet</a>  <!-- Bouton ajouté pour réservation -->
+<div class="container my-5 dark-chalets">  <!-- ← AJOUT DE LA CLASSE ICI -->
+    <h1 class="mb-4 text-center">Nos Chalets Disponibles</h1>
+
+    {% if chalets %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for chalet in chalets %}
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <!-- Photo du chalet -->
+                {% if chalet.photo %}
+                <img src="{{ chalet.photo.url }}"
+                     class="card-img-top"
+                     alt="{{ chalet.nom }}"
+                     style="height: 220px; object-fit: cover;">
+                {% else %}
+                <!-- Image par défaut -->
+                <img src="{% static 'images/chalet-default.jpg' %}"
+                     class="card-img-top"
+                     alt="Chalet sans photo"
+                     style="height: 220px; object-fit: cover;">
+                {% endif %}
+
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ chalet.nom }}</h5>
+
+                    <ul class="list-unstyled small text-muted mb-3">
+                        <li><strong>Capacité :</strong> {{ chalet.capacite_max }} personnes</li>
+                        <li><strong>Localisation :</strong> {{ chalet.localisation }}</li>
+                        <li><strong>Équipements :</strong> {{ chalet.equipements|truncatewords:8 }}</li>
+                        {% if chalet.services_hiver %}
+                        <li><span class="badge bg-info">Services hiver disponibles</span></li>
+                        {% endif %}
+                    </ul>
+
+                    <div class="mt-auto">
+                        <a href="{% url 'calendrier_chalet' chalet.id %}"
+                           class="btn btn-outline-primary btn-sm w-100 mb-2">
+                            Voir le calendrier
+                        </a>
+                        <a href="{% url 'creer_reservation' chalet.id %}"
+                           class="btn btn-success btn-sm w-100">
+                            Réserver maintenant
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+    {% else %}
+    <div class="alert alert-info text-center">
+        Aucun chalet disponible pour le moment.
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

@@ -19,7 +19,7 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 #from membre.views import inscription
 from chalet.views import accueil, liste_chalets, calendrier_chalet, evenements_chalet
-from reservation.views import reservations_membre, creer_reservation, annuler_reservation # Ajout de creer_reservation
+from reservation.views import reservations_membre, creer_reservation, annuler_reservation  # Ajout de creer_reservation
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,7 +35,9 @@ urlpatterns = [
     path('reservations/<int:reservation_id>/annuler/', annuler_reservation, name='annuler_reservation'),
 ]
 
-# Pour médias (si pas déjà)
+# Servir les médias (uploads comme les photos de chalets) UNIQUEMENT en développement
 from django.conf import settings
 from django.conf.urls.static import static
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
